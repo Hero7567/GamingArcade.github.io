@@ -1,0 +1,255 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font: 20px "Neuton";
+    background: #000000;
+    color: rgba(255, 255, 255);
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0px double rgba(255, 255, 255, 0.828);
+    border-width: 8px 0;
+    padding: 1.5em 0em;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 60%;
+}
+
+.welcome {
+    text-transform: uppercase;
+    letter-spacing: .30em;
+}
+
+.heading {
+    /* border: 2px solid white; */
+    text-transform: uppercase;
+    font: 700 4em/1 "Oswald", sans-serif;
+    letter-spacing: 2px;
+    padding: .35em 0 .325em;
+    display: block;
+    margin: 0 auto;
+
+    background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: aitf 80s linear infinite;
+
+    position: relative;
+    color: #222;
+    overflow: hidden;
+}
+
+
+@-webkit-keyframes aitf {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Both overlays */
+.heading::before,
+.heading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background: #000000;
+    transform: translateX(0);
+    transition: transform 2s ease-in;
+    transition-delay: 0.5s;
+    z-index: 1;
+}
+
+.heading::before {
+    left: 0;
+    clip-path: polygon(0% 0%,
+            /* top-left corner */
+            80% 0%,
+            /* top-right */
+            100% 100%,
+            /* bottom-right */
+            0% 100%
+            /* bottom-left corner */
+        );
+}
+
+.heading::after {
+    right: 0;
+    left: auto;
+    clip-path: polygon(00% 00%,
+            /* top-left */
+            100% 0%,
+            /* top-right */
+            100% 100%,
+            /* bottom-right */
+            20% 100%
+            /* bottom-left */
+        );
+}
+
+.heading.active::before {
+    transform: translateX(-100%);
+}
+
+.heading.active::after {
+    transform: translateX(100%);
+}
+
+.glow-on-hover {
+    width: 300px;
+    height: 40px;
+    letter-spacing: .15em;
+    font-size: 14px;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.glow-on-hover.active {
+    opacity: 1;
+    transform: translateY(0);
+    animation: glowing 1s ease-in-out infinite alternate;
+}
+
+@keyframes glowing {
+    from {
+        box-shadow: 0 0 10px #ff4d00, 0 0 0px #ff4d00;
+    }
+
+    to {
+        box-shadow: 0 0 10px #ff4d00, 0 0 20px #ff4d00;
+    }
+}
+
+.glow-on-hover:hover {
+    animation-play-state: paused;
+    color: #ff4d00;
+}
+
+.glow-on-hover:active {
+    animation-play-state: paused;
+    color: #ffffff;
+    background-color: #ff5e19;
+}
+
+@media (max-width:1400px) {
+    body {
+        font: 15px "Neuton";
+    }
+
+    .glow-on-hover {
+        width: 250px;
+        height: 35px;
+        font-size: 11px;
+        letter-spacing: .15em;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing {
+        from {
+            box-shadow: 0 0 7px #ff4d00,
+                0 0 0px #ff4d00;
+        }
+
+        to {
+            box-shadow: 0 0 7px #ff4d00,
+                0 0 15px #ff4d00;
+        }
+
+    }
+
+}
+
+@media (max-width:1050px) {
+    body {
+        font: 12px "Neuton";
+    }
+
+    .glow-on-hover {
+        width: 180px;
+        height: 30px;
+        font-size: 8px;
+        letter-spacing: .15em;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing {
+        from {
+            box-shadow: 0 0 5px #ff4d00,
+                0 0 0px #ff4d00;
+        }
+
+        to {
+            box-shadow: 0 0 5px #ff4d00,
+                0 0 10px #ff4d00;
+        }
+
+    }
+}
+
+@media (max-width:450px) {
+    body {
+        font: 9px "Neuton";
+    }
+
+    .welcome {
+        letter-spacing: .20em;
+    }
+
+    .glow-on-hover {
+        width: 150px;
+        height: 26px;
+        font-size: 7px;
+        letter-spacing: .15em;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing {
+        from {
+            box-shadow: 0 0 5px #ff4d00,
+                0 0 0px #ff4d00;
+        }
+
+        to {
+            box-shadow: 0 0 5px #ff4d00,
+                0 0 10px #ff4d00;
+        }
+
+    }
+}
+
+@media (max-width:350px) {
+    body {
+        font: 8px "Neuton";
+    }
+
+    .welcome {
+        letter-spacing: .16em;
+    }
+
+    .glow-on-hover {
+        width: 130px;
+        height: 25px;
+        font-size: 6px;
+        letter-spacing: .15em;
+        border-radius: 8px;
+    }
+}
